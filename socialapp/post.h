@@ -1,4 +1,6 @@
 #include <iostream>
+// #include <cmath>
+
 using namespace std;
 
 class post{
@@ -9,6 +11,13 @@ private:
   string* likelist;
   int comments;
   string *commentlist;
+  int day;
+  int month;
+  int year;
+  int type;
+  string value;
+  string owner;
+  
 public:
   post(){
     id="";
@@ -17,9 +26,22 @@ public:
     likelist=nullptr;
     comments=0;
     commentlist=nullptr;
+    day=0;
+    month=0;
+    year=0;
+    type=0;
+    value="";
+    owner="";
+    
     
   }
-  void setrid(string i){
+void setowner(string o){
+  owner=o;
+}
+string getowner(){
+  return owner;
+}
+  void setid(string i){
     id=i;
   }
   void settitle(string t){
@@ -31,5 +53,96 @@ public:
   void setcomments(int c){
     comments=c;
   }
+int getlikes(){
+  return likes;
+}
+  string getid(){
+    return id;
+  }
+  string gettitle(){
+    return title;
+  }
+  int getcomments(){
+    return comments;
+  }
+  void setday(int d){
+    day=d;
+  }
+  void setmonth(int m){
+    month=m;
+  }
+  void setyear(int y){
+    year=y;
+  }
+  int getday(){
+    return day;
+  }
+  int getmonth(){
+    return month;
+  }
+  int getyear(){
+    return year;
+  }
+  int gettype(){
+    return type;
+  }
+  string getvalue(){
+    return value;
+  }
+  void settype(int t){
+    type=t;
+  }
+  void setvalue(string v){
+    value=v;
+  }
+  void print(){
+    cout<<"Post ID: "<<id<<endl;
+    cout<<"Post Title: "<<title<<endl;
+    cout<<"Post Likes: "<<likes<<endl;
+    cout<<"Post Comments: "<<comments<<endl;
+    cout<<"Post Date: "<<day<<"/"<<month<<"/"<<year<<endl;
+    cout<<"Post Type: "<<type<<endl;
+    cout<<"Post Value: "<<value<<endl;
+    cout<<"Post Owner: "<<owner<<endl;
+    for(int i=0;i<comments;i++){
+      cout<<"   Comment "<<i+1<<": "<<commentlist[i]<<endl;
+      
+    }
+    for(int i=0;i<likes;i++){
+      cout<<"   Like "<<i+1<<": "<<likelist[i]<<endl;
+    }
+    
+    
+  }
+  void addlike(string u){
+    likes++;
+    string *temp=new string[likes];
+    for(int i=0;i<likes-1;i++){
+      temp[i]=likelist[i];
+      
+    }
+    temp[likes-1]=u;
+    delete[] likelist;
+    likelist=temp;
+    
+  }
+  void addcomment(string c){
+    comments++;
+    string *temp=new string[comments];
+    for(int i=0;i<comments-1;i++){
+      temp[i]=commentlist[i];
+      
+    }
+    temp[comments-1]=c;
+    delete[] commentlist;
+    commentlist=temp;
+    
+  }
+~post(){
+  delete[] likelist;
+  delete[] commentlist;
+}
 
+    
+  
 };
