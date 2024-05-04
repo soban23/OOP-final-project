@@ -1,47 +1,90 @@
+#include "page.hpp"
+#include "user.hpp"
+#include <cstring>
+#include <fstream>
 #include <iostream>
-// #include "page.h"
-#include "user.h"
-#include "post.h"
 using namespace std;
 
+user *readuserfile() {
+  ifstream file("socialapp/users.txt");
+
+  if (!file.is_open()) {
+    cout << "Failed to open the file." << endl;
+    exit(0);
+  }
+  int totalusers;
+  file >> totalusers;
+  user *users = new user[totalusers];
+  for (int i = 0; i < totalusers; i++) {
+    string id, firstname, lastname;
+    file >> id >> firstname >> lastname;
+    users[i].setID(id);
+    users[i].setName(firstname + " " + lastname);
+    string friendId;
+    while (file >> friendId && friendId != "-1") {
+      users[i].addFriend(friendId);
+    }
+
+    string pageId;
+    while (file >> pageId && pageId != "-1") {
+      users[i].LikePage(pageId);
+    }
+  }
+
+  file.close();
+  return users;
+}
+page *readpagefile() {
+  ifstream file("socialapp/pages.txt");
+  if (!file.is_open()) {
+    cout << "Failed to open the file." << endl;
+    exit(0);
+  }
+  string id, title;
+  int totalpages;
+  file >> totalpages;
+  page *pages = new page[totalpages];
+  for (int i = 0; i < totalpages; i++) {
+    file >> id;
+    getline(file, title);
+    pages[i].set_id(id);
+    pages[i].set_title(title);
+  }
+  file.close();
+  return pages;
+}
 
 int main() {
-  
-  user u1;
-  u1.print();
-  u1.setName("Jack");
-  u1.setID("u1");
-  u1.print();
-  user u2("u2", "Jill");
-  u1.addFriend(u2);
-  u1.print();
-  user u3("u3", "ill");
-  u1.addFriend(u3);
-  u1.print();
-  if(u1.searchfriend("u3").getName()!= "Unknown"){
-    cout << "u3 is a friend of u1" << endl;
-  }else{
-    cout << "u3 is not a friend of u1" << endl;
+
+  int totalpages, totalusers;
+  ifstream f1("socialapp/users.txt");
+  f1 >> totalusers;
+  f1.close();
+  ifstream f2("socialapp/pages.txt");
+  f2 >> totalpages;
+  f2.close();
+
+  user *users = readuserfile();
+  page *pages = readpagefile();
+  for (int i = 0; i < totalpages; i++) {
+    for (int j = 0; j < totalusers; j++) {
+      if (users[j].checklikes(pages[i].get_id())) {
+        pages[i].increment_likes();
+      }
+    }
   }
-  page p1;
-  p1.set_id("p1");
-  p1.set_title("page1");
-  page p2;
-  p2.set_id("p2");
-  p2.set_title("page2");
-  page p3;
-  p3.set_id("p3");
-  p3.set_title("page3");
-  string* list= new string[3];
-  list[0]="p1";
-  list[1]="p2";
-  list[2]="p3";
-  string list1[2]={"u1","u2"};
-  user u4("u4", "Jack");
-  search_page(list[0]);
-  
-  
-  
-  
-  
+
+  for (int i = 0; i < totalusers; i++) {
+    users[i].print();
+
+    cout << endl;
+  }
+
+  for (int i = 0; i < totalpages; i++) {
+    pages[i].print();
+
+    cout << endl;
+  }
+
+  return 0;
 }
