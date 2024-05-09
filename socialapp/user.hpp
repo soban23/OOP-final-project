@@ -37,6 +37,15 @@ public:
   //   likedpages = list2;
   //   likedpagecount=lp;
   // }
+  // user operator=(const user &other){
+  //   id = other.id;
+  //   name = other.name;
+  //   friendlist = other.friendlist;
+  //   friendcount = other.friendcount;
+  //   likedpages = other.likedpages;
+  //   likedpagecount = other.likedpagecount;
+  //   return *this;
+  // }
   void setID(string i) { id = i; }
   void setName(string n) { name = n; }
   string getID() { return id; }
@@ -59,6 +68,12 @@ public:
       
     }
   }
+// user* searchuser(string i){
+  
+// }
+string getfriendlist(int i){
+  return friendlist[i];
+}
   void addFriend(string u) {
     friendcount++;
     string *temp = new string[friendcount];
@@ -95,7 +110,9 @@ int checklikes(string p){
   }
   return 0;
 }
-
+int getfriendcount(){
+  return friendcount;
+}
   ~user() { delete[] friendlist; }
   // user searchfriend(string u) {
   //   for (int i = 0; i < friendcount; i++) {
