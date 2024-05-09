@@ -1,4 +1,5 @@
 #include <iostream>
+// #include "comment.hpp"
 // #include <cmath>
 
 using namespace std;
@@ -96,21 +97,23 @@ int getlikes(){
     value=v;
   }
   void print(){
-    cout<<"Post ID: "<<id<<endl;
-    cout<<"Post Title: "<<title<<endl;
-    cout<<"Post Likes: "<<likes<<endl;
-    cout<<"Post Comments: "<<comments<<endl;
-    cout<<"Post Date: "<<day<<"/"<<month<<"/"<<year<<endl;
-    cout<<"Post Type: "<<type<<endl;
-    cout<<"Post Value: "<<value<<endl;
-    cout<<"Post Owner: "<<owner<<endl;
-    for(int i=0;i<comments;i++){
-      cout<<"   Comment "<<i+1<<": "<<commentlist[i]<<endl;
-      
+    string act= "";
+    if(type==1){
+      act="feeling";;
+    }else if(type==2){
+      act="thinking about";
+    }else if(type==3){
+      act="making";
+    }else if(type==4){
+      act="celebrating";
     }
-    for(int i=0;i<likes;i++){
-      cout<<"   Like "<<i+1<<": "<<likelist[i]<<endl;
+    if(act == ""){
+      cout << " shared "<< title << endl;
+    } else {
+      cout <<" is "<<act<<" "<<value<<endl;
+      cout << title << endl;
     }
+    
     
     
   }
@@ -125,6 +128,11 @@ int getlikes(){
     delete[] likelist;
     likelist=temp;
     
+  }
+  void displaylikers(){
+    for(int i=0;i<likes;i++){
+      cout  << likelist[i] << endl;
+    }
   }
   void addcomment(string c){
     comments++;
