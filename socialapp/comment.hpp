@@ -40,12 +40,12 @@ string getcomment(){
   return comment;
 }
 void print(){
-  cout<<"Comment ID: "<<id<<endl;
-  cout<<"Comment Post ID: "<<postid<<endl;
-  cout<<"Comment Owner: "<<owner<<endl;
-  cout<<"Comment: "<<comment<<endl;
+  cout << " wrote: " << comment << endl;
   
 }
+// void addcomment(string c){
+//   comment=c;
+// }
 ~commentlist(){
   // cout<<"Comment with ID "<<id<<" deleted"<<endl;
 }
