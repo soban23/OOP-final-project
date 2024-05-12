@@ -552,7 +552,7 @@ int main() {
     f4.close();
 
     string commenttext;
-    int day=0, month=0, year=0;
+    int day, month, year;
     user* users = readuserfile();
     page* pages = readpagefile();
     post* posts = readpostfile();
