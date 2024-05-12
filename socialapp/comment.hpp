@@ -43,10 +43,8 @@ void print(){
   cout << " wrote: " << comment << endl;
   
 }
-// void addcomment(string c){
-//   comment=c;
-// }
+
 ~commentlist(){
-  // cout<<"Comment with ID "<<id<<" deleted"<<endl;
+ 
 }
 };
