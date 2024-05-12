@@ -1,6 +1,4 @@
 #include <iostream>
-// #include "comment.hpp"
-// #include <cmath>
 
 using namespace std;
 
@@ -146,6 +144,17 @@ int getlikes(){
     commentlist=temp;
     
   }
+int checklike(string u){
+  for(int i=0;i<likes;i++){
+    if(likelist[i]==u){
+      return 1;
+    }
+  }
+  return 0;
+}
+string getliker(int i){
+  return likelist[i];
+}
 ~post(){
   delete[] likelist;
   delete[] commentlist;
