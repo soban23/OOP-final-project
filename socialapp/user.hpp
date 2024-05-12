@@ -28,24 +28,7 @@ public:
     likedpages = nullptr;
     likedpagecount = 0;
   }
-  // user(string i, string n, user *list1 = nullptr, int fc = 0,
-  //      page *list2 = nullptr, int lp=0) {
-  //   id = i;
-  //   name = n;
-  //   friendlist = list1;
-  //   friendcount = fc;
-  //   likedpages = list2;
-  //   likedpagecount=lp;
-  // }
-  // user operator=(const user &other){
-  //   id = other.id;
-  //   name = other.name;
-  //   friendlist = other.friendlist;
-  //   friendcount = other.friendcount;
-  //   likedpages = other.likedpages;
-  //   likedpagecount = other.likedpagecount;
-  //   return *this;
-  // }
+ 
   void setID(string i) { id = i; }
   void setName(string n) { name = n; }
   string getID() { return id; }
@@ -68,9 +51,7 @@ public:
       
     }
   }
-// user* searchuser(string i){
-  
-// }
+
 string getfriendlist(int i){
   return friendlist[i];
 }
@@ -113,27 +94,10 @@ int checklikes(string p){
 int getfriendcount(){
   return friendcount;
 }
-  ~user() { delete[] friendlist; }
-  // user searchfriend(string u) {
-  //   for (int i = 0; i < friendcount; i++) {
-  //     if (friendlist[i].getID() == u) {
-  //       // cout << "Friend found" << endl;
-  //       return friendlist[i];
-  //     }
-  //   }
-  //   return user();
-  // }
-// void likedpage(page p){
-//   page *temp;
-
-//   temp=new page[likedpagecount+1];
-//   for(int i=0;i<likedpagecount;i++){
-//     temp[i]=likedpages[i];
-
-//   }
-//   temp[likedpagecount+1]=p;
-//   likedpages=temp;
-//   likedpagecount++;
-// }
+  ~user() {
+    delete[] friendlist; 
+    delete[] likedpages;
+  }
+ 
 };
 
